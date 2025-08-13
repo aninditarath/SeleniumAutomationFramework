@@ -1,9 +1,15 @@
 package org.page;
 
 import org.constants.Browser;
+
+import static org.constants.Enviornment.*;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.utility.Browserutility;
+import org.utility.JsonUtility;
+
+import static org.utility.PropertiesUtil.*;
 
 public class Homepage extends Browserutility {
 
@@ -11,7 +17,8 @@ public class Homepage extends Browserutility {
 
     public Homepage(Browser browsername) {
         super(browsername);
-        gotoWebsite("http://www.automationpractice.pl/index.php");
+        gotoWebsite(readproperty(QA,"URL"));
+        gotoWebsite(JsonUtility.readjson(QA));
     }
 
 

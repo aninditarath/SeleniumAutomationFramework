@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Suite"  verbose="1" parallel="false">
+    <listeners>
+        <!-- Default TestNG HTML report listener -->
+        <listener class-name="org.testng.reporters.EmailableReporter"/>
+        <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+        <!-- Optional: custom listener to auto-open report -->
+        <listener class-name="org.utility.ReportOpener"/>
+    </listeners>
+
+    <test name="UI Tests">
+        <classes>
+<!--            <class name="org.uitests.LoginTest"/>-->
+            <class name="org.uitests.LoginTest2"/>
+        </classes>
+    </test>
+
+</suite>
