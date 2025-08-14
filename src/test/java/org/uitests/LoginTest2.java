@@ -37,7 +37,7 @@ Homepage homepage;
     }
     @AfterMethod(alwaysRun = true)
     public void teardown() {
-        if (homepage != null) homepage.quit();  // implement quit() inside Homepage to driver.quit()
+        if (homepage != null) homepage.quit();
     }
 
 }
