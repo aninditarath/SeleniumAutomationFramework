@@ -64,4 +64,9 @@ public abstract class Browserutility {
         String value = element.getText();
         return value;
     }
+
+    public void quitdriver(){
+        driver.quit();
+
+    }
 }

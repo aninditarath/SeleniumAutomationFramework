@@ -1,18 +1,12 @@
 package org.uitests;
 
 import org.constants.Browser;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.page.Homepage;
-import org.page.Loginpage;
-import org.testng.Assert;
+import org.pojo.User;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.utility.Browserutility;
-
-import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
 
@@ -20,10 +14,13 @@ public class LoginTest2 {
 Homepage homepage;
     @BeforeMethod(description = "Load the homepage")
     public void setup(){
-        Homepage homepage = new Homepage(Browser.CHROME);
+         homepage = new Homepage(Browser.CHROME);
     }
-         @Test(description = "Verifies the login functionality", groups = {"e2e","sanity"})
-        public void loginTest(){
+         @Test(description = "Verifies the login functionality",
+                 groups = {"e2e","sanity"},
+                 dataProviderClass = org.dataproviders.loginDataProvider.class,
+                 dataProvider = "LoginTestDataprovider")
+        public void loginTest(User user){
         //WebDriver driver= new ChromeDriver();
 
 //        homepage.gotoWebsite("http://www.automationpractice.pl/index.php");
@@ -32,11 +29,15 @@ Homepage homepage;
 
 
              assertEquals(homepage.goToLoginpage()
-                     .loginwith("vagog10304@ahvin.com","password")
+                     .loginwith(user.getEmailaddress(),user.getPassword())
                      .checkUsername(),"Vg Grover");
 
 
 
+    }
+    @AfterMethod(alwaysRun = true)
+    public void teardown() {
+        if (homepage != null) homepage.quit();  // implement quit() inside Homepage to driver.quit()
     }
 
 }

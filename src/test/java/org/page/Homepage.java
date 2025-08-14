@@ -30,5 +30,10 @@ public class Homepage extends Browserutility {
 
   }
 
+  public  void quit(){
+        quitdriver();
+
+  }
+
 
 }
